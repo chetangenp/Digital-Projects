@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSmart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-image: url("https://brand.genpact.com/brandsource/web/uploads/ggrid-application_with_solid_color_and_image-1.jpg");
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #01152b;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            height: 50px;
+        }
+
+        .navbar-logo img {
+            width: 140px;
+            height: auto;
+        }
+
+        .navbar-center {
+
+            flex-grow: 1;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 9px;
+            color: #ccc;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            margin-right: 40px;
+        }
+
+        .navbar-right a:hover {
+            color: #1e90ff;
+            /* Add hover effect */
+        }
+
+        .video-section {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            margin-top: 70px;
+        }
+
+        .video-section video {
+            width: 100%;
+            height: 480px;
+            /* Set the desired height */
+            object-fit: cover;
+            /* This will ensure the video covers the space proportionally */
+        }
+
+        .image-slider {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            overflow: hidden;
+            top: 30px;
+            left: 200px;
+            padding:20px;
+        }
+
+        .image-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .download-btn {
+            position: absolute;
+            top: 25px;
+            right: 70px;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background-color: green;
+        }
+
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .left-arrow {
+            left: 30px;
+        }
+
+        .right-arrow {
+            right: 10px;
+        }
+
+        .zoom-btn {
+            position: absolute;
+            top: 30px;
+            background-color: grey;
+            color: white;
+            font-size: 16px;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 10;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zoom-in {
+            right: 40px;
+        }
+
+        .zoom-out {
+            right: 10px;
+        }
+
+        .link-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            width: 200px;
+            position: absolute;
+            top: 75px;
+            right: 130px;
+        }
+
+        .item {
+            background-color: #01152b;
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .item h3 {
+            margin: 0;
+            font-size: 14px;
+            color: white;
+        }
+
+        .item a {
+            text-decoration: none;
+            color: grey;
+            font-size: 11px;
+        }
+
+        .item a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="images\Genpact_horizontal_color_rgb.png" alt="Logo" />
+        </div>
+        <div class="navbar-center">
+            <div class="title">DIGITAL PROJECTS</div>
+            <div class="subtitle">DIVE INTO MY DIGITAL WORLD</div>
+        </div>
+        <div class="navbar-right">
+            <a href="#about-us">About Us</a>
+        </div>
+    </nav>
+
+
+    <!-- Main content container -->
+    <div class="container">
+        <!-- Video Section -->
+        <div class="video-section">
+            <video id="myVideo" controls>
+                <source src="videos\Gen AI Project – Tech. Modeling (1).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Screenshot Section -->
+        <div class="image-slider">
+            <button class="download-btn" onclick="downloadImages()">
+                <img src="images\icons8-download-32.png" alt="Download" style="width: 24px; height: 24px;" />
+            </button>
+            <div class="arrow-btn left-arrow" onclick="changeImage(-1)">&#8592;</div>
+            <div class="arrow-btn right-arrow" onclick="changeImage(1)">&#8594;</div>
+            <div class="zoom-btn zoom-in" onclick="zoomImage(1)">+</div>
+            <div class="zoom-btn zoom-out" onclick="zoomImage(-1)">-</div>
+
+            <div class="image-container" id="imageContainer">
+                <img src="GSmart_Screenshots/Slide1.JPG" alt="Image 1">
+                <img src="GSmart_Screenshots/Slide2.JPG" alt="Image 2">
+                <img src="GSmart_Screenshots/Slide3.JPG" alt="Image 3">
+                <img src="GSmart_Screenshots/Slide4.JPG" alt="Image 4">
+                <img src="GSmart_Screenshots/Slide5.JPG" alt="Image 5">
+                <img src="GSmart_Screenshots/Slide6.JPG" alt="Image 6">
+                <img src="GSmart_Screenshots/Slide7.JPG" alt="Image 7">
+                <img src="GSmart_Screenshots/Slide8.JPG" alt="Image 8">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const video = document.getElementById("myVideo");
+
+        function playVideo() {
+            video.play();
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+    </script>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('#imageContainer img');
+        const totalImages = images.length;
+        const container = document.getElementById('imageContainer');
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            }
+
+            const containerWidth = container.offsetWidth;
+            container.style.transform = `translateX(-${currentIndex * containerWidth}px)`;
+        }
+
+        let zoomLevel = 1;
+
+        function zoomImage(direction) {
+            // Adjust zoom level (zoom in or zoom out)
+            zoomLevel += direction * 0.1; // Increase or decrease zoom by 0.1
+
+            if (zoomLevel < 1) zoomLevel = 1; // Set a minimum zoom level (prevents shrinking too much)
+            if (zoomLevel > 3) zoomLevel = 3; // Set a maximum zoom level (prevents excessive zoom)
+
+            // Apply zoom effect on the currently visible image
+            const currentImage = images[currentIndex];
+            currentImage.style.transform = `scale(${zoomLevel})`;
+        }
+    </script>
+
+    <script>
+        async function downloadImages() {
+            const zip = new JSZip();
+            const folder = zip.folder("Tech_Model_Images"); // Folder name inside the ZIP
+
+            // Array of image URLs
+            const imageUrls = [
+                "GSmart_Screenshots/Slide1.JPG",
+                "GSmart_Screenshots/Slide2.JPG",
+                "GSmart_Screenshots/Slide3.JPG",
+                "GSmart_Screenshots/Slide4.JPG",
+                "GSmart_Screenshots/Slide5.JPG",
+                "GSmart_Screenshots/Slide6.JPG",
+                "GSmart_Screenshots/Slide7.JPG",
+                "GSmart_Screenshots/Slide8.JPG",
+
+            ];
+
+            // Fetch each image and add it to the ZIP
+            const imageFetchPromises = imageUrls.map(async (url, index) => {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                folder.file(`Image${index + 1}.jpg`, blob);
+            });
+
+            // Wait for all images to be added to the ZIP
+            await Promise.all(imageFetchPromises);
+
+            // Generate the ZIP file
+            zip.generateAsync({ type: "blob" }).then((content) => {
+                // Create a download link and trigger the download
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(content);
+                link.download = "Tech_Model_Images.zip";
+                link.click();
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #01152b;
+            height: 80px;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-left img {
+            height: 70px;
+            margin-right: 10px;
+            background-blend-mode: lighten;
+            border: none;
+        }
+
+        .navbar-left .title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .navbar-left .subtitle {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right .dropdown {
+            margin-left: 10px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Main container */
+        .container {
+            padding: 20px;
+            height: calc(100vh - 80px);
+            background-image: url("https://brand.genpact.com/brandsource/web/uploads/ggrid-application_with_solid_color_and_image-1.jpg");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .horizontal-bar {
+            display: flex;
+            border-radius: 10px;
+            background-color: #01152b;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            height: 20px;
+        }
+
+        .horizontal-bar div {
+            flex: 1;
+            text-align: center;
+        }
+
+        .horizontal-bar div:hover {
+            background-color: darkgrey;
+        }
+
+        /* Arrow container */
+        .arrow-container {
+            margin-top: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: black;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #01152b;
+            border-radius: 5px;
+        }
+
+        .arrow-container i {
+            margin-right: 10px;
+        }
+
+        /* Dropdown content styles */
+        .dropdown-content {
+            display: none;
+            background-color: #01152b;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width:290px;
+            height:40px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Flexbox container for main headings */
+        .main-headings {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            width:300px;
+            margin-left: 20px;
+        }
+
+        .info-icon {
+            margin-left: 5px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="https://brand.genpact.com/brandsource/web/uploads/horizontal-logo-in-color.jpg" alt="Logo">
+            <div>
+                <div class="title">ONE STOP PAGE</div>
+                <div class="subtitle">Your Source for All Important Links</div>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <span>Need Spotfire report access?</span>
+            <button class="dropdown">▼</button>
+        </div>
+    </div>
+
+    <!-- Main content container -->
+    <div class="container">
+        <div class="horizontal-bar">
+            <div>Power BI Dashboards</div>
+            <div>Box Folders</div>
+            <div>Spotfire Dashboards</div>
+            <div>Others</div>
+        </div>
+
+        <!-- Main headings section -->
+        <div class="main-headings">
+            <!-- Automotive -->
+            <div>
+                <div class="arrow-container" onclick="toggleDropdown('automotive-dropdown')">
+                    <i class="fas fa-arrow-right"></i>
+                    Automotive
+                </div>
+                <div id="automotive-dropdown" class="dropdown-content">
+                    <a href="" target="_blank">
+                        Automotive View Dealer App
+                        <span class="info-icon">ℹ️</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Source Cost Analyzer -->
+            <div>
+                <div class="arrow-container" onclick="toggleDropdown('sca-dropdown')">
+                    <i class="fas fa-arrow-right"></i>
+                    Source Cost Analyzer
+                </div>
+                <div id="sca-dropdown" class="dropdown-content">
+                    <a href="" target="_blank">
+                        SCA
+                    </a>
+                </div>
+            </div>
+
+            <!-- SCA (Used with Supplement Demo) -->
+            <div>
+                <div class="arrow-container" onclick="toggleDropdown('sca-supplement-dropdown')">
+                    <i class="fas fa-arrow-right"></i>
+                    SCA (Used with Supplement Demo)
+                </div>
+                <div id="sca-supplement-dropdown" class="dropdown-content">
+                    <a href="" target="_blank">
+                        SCA_Final
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const allDropdowns = document.querySelectorAll('.dropdown-content');
+
+            // Close all other dropdowns
+            allDropdowns.forEach(function (item) {
+                if (item !== dropdown) {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Toggle the clicked dropdown
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+
+</html>
